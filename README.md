@@ -1,1 +1,4 @@
-using Fetch data in mockapi using curd(method->post,get,get(id),put,delete) in react.js
+movie:(method->post,get,get(id),put,delete) in mern stack
+user(login,reg,view details)
+after login display movie 
+store token:localstorage
