@@ -1,0 +1,99 @@
+*{
+  padding: 0px;
+  margin: 0px;
+  background-color: black;
+  color:wheat;
+}
+.App {
+  text-align: center;
+  background-color: black;
+  color:wheat;
+}
+
+.movie-poster{
+  width:340px;
+  height: 270px;
+  object-fit:cover;
+  }
+  .movie-container{
+    width:340px;
+    }
+    .head{
+      display:flex;
+      align-items: center;
+      justify-content: space-around;
+     margin:0px;
+    }
+    .movie-name{
+       margin:0;
+       align-items: center;
+    }
+    .movie-rating{
+      align-items:flex-end;
+    }
+    .movie-summary{
+      margin-top:10px;
+    }
+        .movie-starcast{
+      margin-top:0;
+    }
+    .movie-list{
+display: flex;
+gap:16px;
+flex-wrap: wrap;
+justify-content: space-around;
+
+    }
+    .counter{
+      display: flex;
+      gap:5px;
+    }
+    .like-dislike{
+      font-size:20px;
+    }
+    .add-movie-form{
+      display:flex;
+     flex-direction: column;
+     text-align: center;
+     justify-content: center;
+     gap:10px;
+     margin:16px;
+    }
+  
+          .board{
+display:flex;
+flex-wrap: wrap;
+width:492px;
+          }
+          .full-game{
+            display:flex;
+            flex-direction:column;
+                        justify-content: center;
+          }
+          .movie-detail-container{
+            max-width: 980px;
+            margin-left: 5%;
+          }
+          button{
+            padding: 5px;
+            width:10%;
+            border: solid 1px rosybrown;
+            margin-left: 5px;
+            border-radius: 5px;
+          }
+          .movie-space {
+margin-left: 30%;
+          }
+          .movie-space >p  {
+         margin-left: 50%;
+                      }
+                      input{
+                        width: 70%;
+                        height:25%;
+                        padding: 1%;
+                        border: 1px solid rosybrown;
+
+                      }
+                      input > .add-movie-form{
+                        
+                      }
