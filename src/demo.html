@@ -1,0 +1,105 @@
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { mockapi } from './mockapi';
+import { Document, Page } from 'react-pdf';
+import { pdfjs } from 'react-pdf';
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+export function FileDetails() {
+    const{_id}=useParams();
+ const [filedata1, setFiledata1] = useState([]);
+  useEffect(() => {
+    const dataviewid = async () => {
+      try {
+        const response =await fetch(`/files/${_id}`);
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        const mydata = data.filedata;
+        setFiledata1(mydata);
+              } catch (err) {
+        console.error('Error:', err);
+      }
+    };
+
+    dataviewid();
+  }, [_id]);
+
+  const datalist = filedata1.mimetype;
+  const filepath = filedata1.filename;
+  const dataitem = filepath;
+  console.log(datalist)
+  console.log(dataitem)
+
+
+/*
+function SwitchCase(props) {
+    switch (props.value) {
+      case 'application/pdf':
+        return (
+          <div className="pdf-container">
+           
+        <iframe src={dataitem} width="100%" height="100%" title="ifram2" />
+          </div>
+        );
+      case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+        //let  workbook= excel.readFile(dataitem);  
+      return (
+          <div className="imagesize1">
+           
+           <iframe
+          id='id12321'
+          title='dummy'
+          width="100%"
+          height="800"
+          frameborder="0"
+          src={dataitem}
+        ></iframe>
+          </div>
+        );
+        case 'xlsx':
+         
+      return (
+          <div className="imagesize1">
+           
+           <iframe
+          id='id12321'
+          title='dummy'
+          width="100%"
+          height="800"
+          frameborder="0"
+          src={dataitem}
+        ></iframe>
+          </div>
+        );
+      case 'image/jpeg':
+        return (
+          <div>
+            <img src={dataitem} className="imagesize" alt="not found" />
+          </div>
+        );
+      case 'image/png':
+        return (
+          <div>
+            <img src={dataitem} className="imagesize" alt="not found" />
+          </div>
+        );
+      default:
+        return (
+          <div>
+            <code>File can't open</code>
+          </div>
+        );
+    }
+  }
+*/
+  return (
+    <div>
+   <div className="viewdata">
+   <img src={dataitem} className="imagesize" alt="not found" />
+      </div>
+    </div>
+  );
+}

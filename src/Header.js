@@ -1,4 +1,5 @@
 import { useNavigate} from 'react-router-dom';
+import './App.css';
 export default function Headers({user}){
     const history = useNavigate();
     const token =localStorage.getItem('token');
@@ -7,21 +8,23 @@ export default function Headers({user}){
       history('/login')
     }
       return(
-        <div>
+        <div className='menu'>
+         <div className='menu_left'><h1>File Mangement</h1></div>
+<div className='menu_right'>
       {token ?
-        <div>
-            <button onClick={()=>history('/movie')}>Home</button>
-        <button onClick={()=>history('/movie/add')}>Add</button>
-        <button onClick={()=>history('/userprofile')}>Profile</button>
-        <button onClick={logoutuser}>logout</button>
-        </div>
-               :
-        <div>
-        <button onClick={()=>history('/login')}>Login</button>
-        <button onClick={()=>history('/register')}>Register</button>
-        </div>
+        <ul>
+        <li className="afterlogin" onClick={()=>history('/file')}>Home</li>
+        <li className="afterlogin" onClick={()=>history('/file/add')}>Add</li>
+        <li className="afterlogin" onClick={()=>history('/userprofile')}>Profile</li>
+        <li className="afterlogin" onClick={logoutuser}>logout</li>
+        </ul>
+      :
+        <ul >
+        <li onClick={()=>history('/login')}>Login</li>
+        <li onClick={()=>history('/register')}>Register</li>
+        </ul>
       }
-      </div>
+      </div></div>
         
     )
 }

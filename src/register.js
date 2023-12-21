@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { mockapi } from "./mockapi";
 import { useNavigate } from 'react-router-dom';
+import './App.css';
+import Headers from "./Header";
 export default function Register(){
     const [username,setUserName]=useState("");
     const [email,SetEmail]=useState("");
@@ -29,7 +31,9 @@ export default function Register(){
     
     }
     return(
-<div className="add-movie-form">
+        <div className="regpage">
+  <Headers/>
+<div className="add-user-form">
     <h1>Register</h1>
        <input label="Username" placeholder="Username" 
       type="text" onChange={(event) => setUserName(event.target
@@ -40,8 +44,12 @@ export default function Register(){
       <input label="Password" placeholder=" password" type="password" onChange={(event) => setPassword(event.target
         .value)} required /><br/>
       <button variant="contained" type="submit" onClick={()=>register()}>Register</button>
-      <p>Already have a Account<button onClick={()=>history('/login')}>Login</button></p>
-     
+      
+      <br/>
+        <span className="login-span">Already have a Account<button className="login-span-button" onClick={()=>history('/login')}>Login</button></span>
+        
+      
+      </div> 
     </div>
     )
 }

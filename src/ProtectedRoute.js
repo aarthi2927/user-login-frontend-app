@@ -3,7 +3,7 @@ export default function ProtectedRoute({children}){
     return(
         token ?
          <div>
-{children}
+        {children}
         </div>
         :
         <div>

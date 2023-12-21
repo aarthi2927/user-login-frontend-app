@@ -1,28 +1,26 @@
 import './App.css';
 import {useState} from 'react';
 import{BrowserRouter as Router,Routes,Route} from 'react-router-dom';
-import { MovieList } from './MovieList.1';
-import { MovieDetails } from './MovieDetails';
-import { AddMovie } from './AddMovie';
-import { EditMovie } from './EditMovie';
+import { FileList } from './FileList.1';
+import { FileDetails } from './FileDetails';
+import { AddFile} from './AddFile';
+import { EditFile } from './EditFile';
 import Login from './login';
 import Register from './register';
 import ProtectedRoute from './ProtectedRoute';
 import Headers from './Header';
 import UserProfile from './userProfile';
 import {Editprofile} from './editprofile';
-
 function App() {
-    const [movielist,setMovieList]=useState([]);
+    const [filelist,setFileList]=useState([]);
     const [user, setUser] = useState(null);
     return (
       <div className="App">
-        <Headers />
-        <Routes>
-         <Route path='/movie/:_id' element={<ProtectedRoute><MovieDetails/></ProtectedRoute>}/>
-         <Route path='/movie/add' element={<ProtectedRoute><AddMovie movielist={movielist} setMovieList={setMovieList}/></ProtectedRoute>}/>
-         <Route path='/movie/edit/:_id' element={<ProtectedRoute><EditMovie movielist={movielist} setMovieList={setMovieList}/></ProtectedRoute>}/>
-          <Route path='/movie' element={<ProtectedRoute><MovieList movielist={movielist} setMovieList={setMovieList}/> </ProtectedRoute>}/>
+      <Routes>
+         <Route path='/file/:id' element={<ProtectedRoute><FileDetails filelist={filelist} setFileList={setFileList}/></ProtectedRoute>}/>
+         <Route path='/file/add' element={<ProtectedRoute><AddFile filelist={filelist} setFileList={setFileList}/></ProtectedRoute>}/>
+         <Route path='/file/edit/:id' element={<ProtectedRoute><EditFile filelist={filelist} setFileList={setFileList}/></ProtectedRoute>}/>
+          <Route path='/file' element={<ProtectedRoute><FileList filelist={filelist} setFileList={setFileList}/> </ProtectedRoute>}/>
           <Route path='/userprofile/edit' element={<ProtectedRoute><Editprofile/></ProtectedRoute>}/>
           <Route path='/userprofile' element={<ProtectedRoute><UserProfile/></ProtectedRoute>}/>
           <Route path='/login' element={<Login/>}/>

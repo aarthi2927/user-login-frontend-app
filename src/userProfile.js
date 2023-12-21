@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { mockapi } from "./mockapi";
 import { useNavigate } from "react-router-dom";
+import Headers from "./Header";
 
 export default function UserProfile(){
     const [user,setUser]=useState([]);
@@ -23,10 +24,11 @@ export default function UserProfile(){
     useEffect(()=>getUser(),[])
     return(
         <div>
+            <Headers/>
         <div>
                   <h1> welcome to user profile page</h1>
                   <h3>UserName : {user.username}</h3>
-                  <h3>Email : {user.username}</h3>
+                  <h3>Email : {user.email}</h3>
                   </div>
                 
                   </div>

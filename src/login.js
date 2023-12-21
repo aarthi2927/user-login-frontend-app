@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { mockapi } from "./mockapi";
-
+import './App.css';
+import Headers from './Header';
 export default function Login(){
   const [user,setUser]=useState(null);
   const [username,setUserName]=useState("");
@@ -24,21 +25,24 @@ export default function Login(){
         localStorage.setItem('token',result.token);
           localStorage.setItem('user',username);
           console.log(username);
-          history('/movie');
+          history('/file');
          })
   }
     return(
-<div className="add-movie-form">
+<div className="loginpage">
+  <Headers/>
+ <div className="add-user-form">
     <h1>Login</h1>
     <input label="Username" placeholder="Username" 
       type="text" onChange={(event) => setUserName(event.target
-        .value)} required/>
+      .value)} required/>
         <br/>
       <input label="Password" placeholder="password" type="password" onChange={(event) => setPassword(event.target
         .value)} required/><br/>
-      
-      <span><button variant="contained" onClick={userlogin}>Login</button>     Create a new Account<button onClick={()=>history('/register')}>Register</button></span>
-      
-    </div>
+<button variant="contained" onClick={userlogin}>Login</button> 
+<br/>
+        <span className="login-span">Create a new Account<button className="login-span-button" onClick={()=>history('/register')}>Register</button></span>
+          </div>
+       </div>
     )
 }

@@ -1,0 +1,150 @@
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { mockapi } from './mockapi';
+import { Document, Page } from 'react-pdf';
+import { pdfjs } from 'react-pdf';
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+export function FileDetails() {
+  const PF = "http://localhost:8000/uploads/";
+  const {_id} = useParams();
+  console.log(_id);
+  const nav=useNavigate();
+  const [filedata1, setFiledata1] = useState([]);
+ 
+    const dataviewid =async () => {
+      try {
+        const response =await fetch(`/files/${_id}`, {
+          headers: {
+            "x-auth-token": localStorage.getItem("token"),
+            "Access-Content-Type": "application/json",
+            "Access-Control-Allow-Origin":"http://localhost:3000",
+            "Access-Control-Allow-Credentials":"true",
+            "Access-Control-Allow-Methods": "GET" 
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        const mydata = data.filedata;
+        setFiledata1(mydata);
+              }
+              
+              catch (err) {
+        console.error('Error:', err);
+      }
+         };
+  useEffect(() => {
+    dataviewid();
+  }, [_id]);
+
+  const datalist = filedata1.mimetype;
+  const filepath = filedata1.filename;
+  const dataitem = filepath;
+  console.log(datalist)
+  console.log(dataitem)
+
+  {/*
+   const filedata=file.filedata;
+  console.log(file.filedata.originalname) 
+  console.log(file.filedata.mimetype) 
+  console.log(file.filedata.path)
+  console.log(PF+file.filedata.path) 
+ 
+
+
+  return (
+    <div>
+        <div class="file-detail-container">
+        <div class="file-space">
+   
+        
+        <br/> <br/> <br/>
+         <h3>{file.heading}</h3>
+          <h3>{file.heading}</h3>
+          <h3>{file.subheading}</h3>
+          <p>{file.description}</p>
+        </div>
+    <p>{file.description}</p>
+        <br/>
+        <button variant="outlined"  onClick={()=>nav('/file')}>
+      Back
+      </button>
+   
+      </div>
+    </div>
+
+  );
+//<iframe width="100%" height="750" src={file.filedata} title="YouTube video player"  allowfullscreen/>
+}
+*/
+}
+function SwitchCase(props) {
+  switch (props.value) {
+    case 'application/pdf':
+      return (
+        <div className="pdf-container">
+         
+      <iframe src={dataitem} width="100%" height="100%" title="ifram2" />
+        </div>
+      );
+    case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+      //let  workbook= excel.readFile(dataitem);  
+    return (
+        <div className="imagesize1">
+        <iframe
+        id='id12321'
+        title='dummy'
+        width="100%"
+        height="800"
+        frameborder="0"
+        src={dataitem}
+      ></iframe>
+        </div>
+      );
+      case 'xlsx':
+       
+    return (
+        <div className="imagesize1">
+         
+         <iframe
+        id='id12321'
+        title='dummy'
+        width="100%"
+        height="800"
+        frameborder="0"
+        src={dataitem}
+      ></iframe>
+        </div>
+      );
+    case 'image/jpeg':
+      return (
+        <div>
+          <img src={dataitem} className="imagesize" alt="not found" />
+        </div>
+      );
+    case 'image/png':
+      return (
+        <div>
+          <img src={dataitem} className="imagesize" alt="not found" />
+        </div>
+      );
+    default:
+      return (
+        <div>
+          <code>File can't open</code>
+        </div>
+      );
+  }
+}
+
+return (
+  <div>
+ <div className="viewdata">
+      <SwitchCase value={datalist} />
+    </div>
+  </div>
+);
+}
