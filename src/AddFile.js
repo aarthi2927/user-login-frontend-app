@@ -2,8 +2,9 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { mockapi } from './mockapi';
 import Headers from "./Header";
+import "./App.css";
 export function AddFile() {
- const [filelist,setFileList]=useState([]);
+  const [filelist,setFileList] = useState({ });
   const [filedata, setFiledata] = useState("");
   const [heading, setHeading] = useState(" ");
    const [subheading, setSubheading] = useState("");
@@ -17,14 +18,12 @@ const addfile=async(e)=>{
   data.append('heading', heading);
   data.append('subheading', subheading);
   data.append('description', description);
-
   try {
     const response = await fetch(`${mockapi}/files/add`, {
       method: 'POST',
       body: data,
       headers: {
-             
-              'x-auth-token': localStorage.getItem('token'),
+    'x-auth-token': localStorage.getItem('token'),
       },
     });
 
@@ -32,9 +31,9 @@ const addfile=async(e)=>{
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    const filelist = await response.json();
-    console.log('Success:', filelist);
-   setFileList(filelist);
+    const res1 = await response.json();
+    console.log('Success:', res1);
+   setFileList(res1);
     history('/File');
   } catch (error) {
     console.error('Error:', error.message);
@@ -44,8 +43,9 @@ const addfile=async(e)=>{
 return (
     <div>
       <Headers/>
-       <div className="add-file-form">
+       <div>
        <h1>Add Data</h1>  
+       <form onSubmit={addfile} className="file-form"> 
       <input className="add" type="file" onChange={(event)=>
                           setFiledata(event.target.files[0])}  required/> <br/>
        <input className="add" label="Heading" placeholder="Heading" onChange={(event) => setHeading(event.target
@@ -54,8 +54,9 @@ return (
         .value)} /><br/>
       <input className="add" label="Description" placeholder="Description" onChange={(event) => setDescription(event.target
         .value)} /><br/>
-      <button variant="contained" type="submit" onSubmit={addfile}>Add file</button>
-     </div> </div>
+      <button variant="contained" type="submit">Add file</button>
+      </form>
+     </div></div>
   );
 
 }

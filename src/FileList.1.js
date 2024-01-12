@@ -5,15 +5,13 @@ import { Tablehead } from './Tablehead';
 import './App.css';
 import Headers from './Header';
 export function FileList({filelist,setFileList}) {
-
   const getFiles=()=>{
     {fetch(`${mockapi}/files/view`,{
       method:"GET",
       headers: {
         "x-auth-token": localStorage.getItem("token"),
          },
-   
-    })
+       })
     .then((data)=>data.json())
     .then((mvs)=>setFileList(mvs))}
   }
@@ -24,13 +22,12 @@ export function FileList({filelist,setFileList}) {
       "x-auth-token": localStorage.getItem("token"),
        },
   }).then(()=>getFiles());
-  
-};
+  };
   return (
     <div className='content'>
       <Headers/>
       <div className='homepage'>
-      <div className='homepageleft'>hi all</div>
+      <div className='homepageleft'></div>
       <div className='homepageright'>
       <Tablehead/>
       {filelist.map(({heading,filedata,description,subheading,deleteButton,_id }, index) => (

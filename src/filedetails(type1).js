@@ -179,7 +179,6 @@ return (
   <div>
  <div className="viewdata">
 <h1>{filedata1.heading}</h1>
-
 <img style={{ minWidth: '300px', width: '300px', height: '240px' }} src={`http://localhost:8000/${filedata1.filedata}`} />
 <button onClick={()=>{ history('/File');}}>Back</button>
     </div>

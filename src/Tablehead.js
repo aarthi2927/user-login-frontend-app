@@ -4,7 +4,8 @@ export function Tablehead() {
       <th>file header</th>
       <th>Sub heading</th>
       <th>Description</th>
-      <th>Edit/delete</th>
+      <th>Delete</th>
+      <th>Edit</th>
     </thead>
   );
 }

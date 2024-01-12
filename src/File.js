@@ -6,12 +6,13 @@ export function File({ heading,filedata,description,subheading,deleteButton,id }
   return (
     <tbody >
     <tr key={id}>
-        <td onClick={()=>{history(`/file/${id}`)}}>{heading}</td>
+        <td className="link_url" onClick={()=>{history(`/file/${id}`)}}>{heading}</td>
        <td>{subheading}</td>
        <td>{description}</td>
        <td>
-     {deleteButton}
-      <button className="button_modify" variant="outlined"  onClick={()=>history(`/file/edit/${id}`)}>
+     {deleteButton}</td>
+     <td>
+    <button className="button_modify" variant="outlined"  onClick={()=>history(`/file/edit/${id}`)}>
       edit
       </button></td>
        </tr>
